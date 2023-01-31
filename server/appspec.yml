@@ -1,0 +1,18 @@
+version: 0.0
+os: linux
+files:
+  - source:  /
+    destination: /home/ubuntu/action #왼쪽의 디렉토리 내에 배포가 진행됨
+    overwrite: yes
+
+permissions:
+  - object: /
+    pattern: "**"
+    owner: ubuntu
+    group: ubuntu
+
+hooks:
+  ApplicationStart:
+    - location: scripts/deploy.sh #최상위 디렉토리에 scripts 폴더내의 쉘 스크립트가 실행됨
+      timeout: 60
+      runas: ubuntu
